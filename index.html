@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>屏幕上的集体狂欢：弹幕如何改变中国年轻人的观看方式</title>
+  <meta name="description" content="从ACFun到B站，从前方高能到爷青回，解析弹幕文化二十年的演变与影响。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="ambient-grid" aria-hidden="true"></div>
+  <div class="bullet-layer" aria-hidden="true">
+    <span style="--top: 9%; --delay: 0s; --speed: 18s;">前方高能</span>
+    <span style="--top: 18%; --delay: 4s; --speed: 23s;">爷青回</span>
+    <span style="--top: 31%; --delay: 1s; --speed: 21s;">哈哈哈哈</span>
+    <span style="--top: 46%; --delay: 7s; --speed: 25s;">泪目</span>
+    <span style="--top: 59%; --delay: 3s; --speed: 19s;">名场面</span>
+    <span style="--top: 73%; --delay: 9s; --speed: 24s;">破防了</span>
+  </div>
+
+  <header class="hero">
+    <nav class="topbar" aria-label="页面导航">
+      <a href="#origin">起源</a>
+      <a href="#users">用户</a>
+      <a href="#motivation">动机</a>
+      <a href="#impact">影响</a>
+      <a href="#future">未来</a>
+      <a href="#appendix">附录</a>
+    </nav>
+
+    <div class="hero-content reveal">
+      <p class="kicker">数据新闻可视化专题</p>
+      <h1>屏幕上的集体狂欢：弹幕如何改变中国年轻人的观看方式</h1>
+      <p class="subtitle">从ACFun到B站，从“前方高能”到“爷青回”，解析弹幕文化二十年的演变与影响</p>
+      <div class="hero-meta">
+        <span>《数据新闻可视化》课程期末作业</span>
+        <span>公开资料整理</span>
+        <span>更新：2026-06-24</span>
+      </div>
+    </div>
+
+    <div class="hero-stats reveal" aria-label="关键数据">
+      <article>
+        <strong>9.44亿</strong>
+        <span>网络视听用户规模</span>
+        <small>占网民95%以上</small>
+      </article>
+      <article>
+        <strong>22亿+</strong>
+        <span>2020年B站弹幕发送量</span>
+        <small>年度公开资料</small>
+      </article>
+      <article>
+        <strong>86%+</strong>
+        <span>B站35岁以下用户占比</span>
+        <small>年轻用户高度集中</small>
+      </article>
+    </div>
+  </header>
+
+  <main>
+    <section class="story-lead reveal">
+      <p>
+        弹幕并不是简单的评论。它把“看视频”变成了“和一群看不见的人同时在场”：
+        观众在剧情高潮前刷出“前方高能”，在老番重映时留下“爷青回”，也会在一条密集弹幕里迅速形成共同情绪。
+      </p>
+      <p>
+        这篇专题用时间轴、用户画像、动机调查和影响对照，观察弹幕如何从小众二次元功能，变成中国年轻人熟悉的观看界面。
+      </p>
+    </section>
+
+    <section id="origin" class="chapter reveal">
+      <div class="chapter-copy">
+        <p class="chapter-label">第一章</p>
+        <h2>弹幕从哪里来</h2>
+        <p>
+          弹幕的关键变化，不只是技术功能上线，而是观看关系的变化：观众从“看完再评论”，变成“边看边共振”。
+          从日本Niconico到ACFun、Bilibili，再到长视频平台，弹幕逐渐进入主流内容场景。
+        </p>
+      </div>
+      <div class="viz-card">
+        <div class="chart-head">
+          <h3>图1 弹幕文化发展时间轴</h3>
+          <p>点击节点查看关键事件。</p>
+        </div>
+        <div id="timelineChart" class="chart chart-tall" role="img" aria-label="弹幕文化发展时间轴"></div>
+        <div id="timelineFallback" class="timeline-fallback" aria-label="弹幕文化发展时间轴备用展示"></div>
+        <div id="timelineDetail" class="timeline-detail"></div>
+        <p class="source-note" data-source-for="timeline"></p>
+      </div>
+    </section>
+
+    <section id="users" class="chapter reveal">
+      <div class="chapter-copy">
+        <p class="chapter-label">第二章</p>
+        <h2>谁在发弹幕</h2>
+        <p>
+          弹幕用户并不只属于早期二次元社区。随着知识区、综艺、影视、体育赛事和直播内容扩展，
+          弹幕成为年轻用户表达兴趣、寻找同好和参与内容传播的一种轻量方式。
+        </p>
+      </div>
+      <div class="grid-two">
+        <div class="viz-card">
+          <div class="chart-head">
+            <h3>图2 弹幕用户年龄分布</h3>
+            <p>课程展示型整理数据，突出年轻用户集中趋势。</p>
+          </div>
+          <div id="ageChart" class="chart" role="img" aria-label="弹幕用户年龄分布柱状图"></div>
+          <p class="source-note" data-source-for="age"></p>
+        </div>
+        <div class="viz-card">
+          <div class="chart-head">
+            <h3>图3 弹幕用户兴趣偏好</h3>
+            <p>兴趣结构从二次元向泛娱乐与知识内容外溢。</p>
+          </div>
+          <div id="interestChart" class="chart" role="img" aria-label="弹幕用户兴趣偏好饼图"></div>
+          <p class="source-note" data-source-for="interest"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="motivation" class="chapter reveal">
+      <div class="chapter-copy">
+        <p class="chapter-label">第三章</p>
+        <h2>为什么年轻人喜欢发弹幕</h2>
+        <p>
+          在弹幕里，表达通常比完整论证更重要。它像一种“低门槛在场证明”：一句“真实”、一串“哈哈哈哈”，
+          就能让陌生观众短暂地站到同一个情绪现场。
+        </p>
+      </div>
+      <div class="grid-two">
+        <div class="viz-card">
+          <div class="chart-head">
+            <h3>图4 发送弹幕的主要动机</h3>
+            <p>表达、陪伴和玩梗构成弹幕互动的核心动力。</p>
+          </div>
+          <div id="motivationChart" class="chart" role="img" aria-label="发送弹幕主要动机横向柱状图"></div>
+          <p class="source-note" data-source-for="motivation"></p>
+        </div>
+        <div class="viz-card">
+          <div class="chart-head">
+            <h3>图5 高频弹幕词云</h3>
+            <p>热词越大，代表在样本语境中的出现频率越高。</p>
+          </div>
+          <div id="wordCloudChart" class="chart word-chart" role="img" aria-label="高频弹幕词云"></div>
+          <div id="wordCloudFallback" class="word-cloud-fallback" aria-hidden="true"></div>
+          <p class="source-note" data-source-for="wordCloud"></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact" class="chapter reveal">
+      <div class="chapter-copy">
+        <p class="chapter-label">第四章</p>
+        <h2>弹幕改变了什么</h2>
+        <p>
+          弹幕让观看更热闹，也让观看更拥挤。它能增强参与感、形成社群暗号，也可能带来剧透、攻击性表达和注意力分散。
+          平台治理的难题，正来自这种双重性。
+        </p>
+      </div>
+      <div class="viz-card">
+        <div class="chart-head">
+          <h3>图6 弹幕影响的正负对照</h3>
+          <p>正向影响向右，负向影响向左，数值为综合强度指数。</p>
+        </div>
+        <div id="impactChart" class="chart chart-tall" role="img" aria-label="弹幕正负影响对比条形图"></div>
+        <p class="source-note" data-source-for="impact"></p>
+      </div>
+    </section>
+
+    <section id="future" class="chapter future reveal">
+      <div class="chapter-copy">
+        <p class="chapter-label">第五章</p>
+        <h2>未来：弹幕会消失吗？</h2>
+        <p>
+          弹幕不太会消失，但会被重新组织。AI审核让弹幕更安全，AI总结让密集评论变得可读，
+          实时翻译和跨语言弹幕则可能把“同屏观看”推向更大的公共空间。
+        </p>
+      </div>
+      <div class="trend-grid" aria-label="弹幕未来趋势">
+        <article>
+          <span>01</span>
+          <h3>AI审核弹幕</h3>
+          <p>识别剧透、辱骂、刷屏和敏感表达，减少信息污染。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>AI总结弹幕</h3>
+          <p>把密集评论压缩为观点摘要，让用户快速理解群体情绪。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>实时翻译弹幕</h3>
+          <p>跨语言观看成为可能，海外内容社区也能形成同步互动。</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>个性化推荐</h3>
+          <p>用户可以选择只看科普、吐槽、剧情提示或同好弹幕。</p>
+        </article>
+      </div>
+      <blockquote>
+        当弹幕从“屏幕上飞过的文字”变成一种观看基础设施，它改变的不只是视频平台的评论区，
+        更是年轻人理解内容、确认情绪、寻找同伴的方式。未来的问题不是弹幕会不会消失，
+        而是谁来决定哪些声音可以被看见，哪些声音会被折叠。
+      </blockquote>
+    </section>
+
+    <section id="appendix" class="appendix reveal">
+      <p class="chapter-label">附录</p>
+      <h2>附录：数据来源说明</h2>
+      <p class="appendix-note">
+        下表列出本专题所有图表对应的数据口径。用户画像、动机与影响类数据为课程展示型整理数据，
+        依据公开报告中的用户结构、平台生态与弹幕互动描述进行指数化表达。
+      </p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>图表编号</th>
+              <th>图表名称</th>
+              <th>使用数据</th>
+              <th>数据来源机构</th>
+              <th>原始链接</th>
+              <th>获取时间</th>
+            </tr>
+          </thead>
+          <tbody id="appendixBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>数据新闻可视化专题网页 - 公开资料整理 - 制作用于《数据新闻可视化》课程展示</p>
+  </footer>
+
+  <script src="vendor/echarts.min.js"></script>
+  <script src="vendor/echarts-wordcloud.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
