@@ -706,6 +706,198 @@
       transform: translateY(0);
     }
 
+    @media print {
+      @page {
+        size: A4;
+        margin: 10mm;
+      }
+
+      html,
+      body {
+        background: #ffffff !important;
+      }
+
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .scroll-cue,
+      .chapter-nav,
+      .next-row {
+        display: none !important;
+      }
+
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .page,
+      .cover-inner {
+        width: 100%;
+      }
+
+      .cover {
+        min-height: 0;
+        overflow: visible;
+      }
+
+      .cover::before,
+      .motion-scene {
+        height: 210px;
+        min-height: 210px;
+      }
+
+      .cover-inner {
+        padding: 250px 0 28px;
+      }
+
+      h1 {
+        font-size: 58px;
+      }
+
+      .subtitle {
+        font-size: 22px;
+      }
+
+      .lead,
+      .section-deck,
+      .chapter-summary,
+      .text-block p,
+      .full-text p {
+        font-size: 14px;
+        line-height: 1.72;
+      }
+
+      .cover-stats {
+        gap: 8px;
+        margin-top: 20px;
+      }
+
+      .stat-pill {
+        box-shadow: none;
+        padding: 10px 12px;
+      }
+
+      .contents {
+        min-height: 0;
+        background: #ffffff;
+      }
+
+      .section,
+      .sources {
+        padding: 30px 0;
+      }
+
+      .section-title {
+        font-size: 38px;
+      }
+
+      .toc-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .toc-card,
+      .toc-card:nth-child(2),
+      .toc-card:nth-child(4) {
+        min-height: 170px;
+        margin-top: 0;
+        padding: 16px;
+        box-shadow: none;
+      }
+
+      .toc-card p {
+        left: 16px;
+        right: 16px;
+        bottom: 14px;
+      }
+
+      .chapter {
+        break-before: page;
+      }
+
+      .chapter-head {
+        min-height: 0;
+        padding: 28px 0 16px;
+        display: block;
+      }
+
+      .chapter-title {
+        font-size: 42px;
+      }
+
+      .content-flow {
+        padding: 20px 0 26px;
+      }
+
+      .story-grid,
+      .story-grid.reverse {
+        display: block;
+        margin: 22px 0;
+      }
+
+      .story-grid.reverse .text-block {
+        order: initial;
+      }
+
+      .visual,
+      .viz-panel,
+      .pullquote,
+      .data-strip,
+      .source-box {
+        break-inside: avoid;
+      }
+
+      .visual {
+        min-height: 220px;
+        margin: 16px 0;
+        box-shadow: none;
+      }
+
+      .pullquote {
+        margin: 20px 0;
+        padding: 18px 20px;
+        box-shadow: none;
+        font-size: 18px;
+      }
+
+      .viz-panel {
+        margin: 18px 0;
+        padding: 16px;
+        box-shadow: none;
+      }
+
+      .chart {
+        height: 280px !important;
+      }
+
+      .chart.short {
+        height: 250px !important;
+      }
+
+      .chart.tall {
+        height: 320px !important;
+      }
+
+      .data-strip {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin: 22px 0;
+      }
+
+      .sources {
+        break-before: page;
+      }
+
+      .source-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
     @media (max-width: 980px) {
       .toc-grid,
       .story-grid,
@@ -1124,6 +1316,7 @@
       const el = document.getElementById(id);
       if (!el || !window.echarts) return null;
       const chart = echarts.init(el);
+      option.animation = false;
       chart.setOption(option);
       window.addEventListener('resize', () => chart.resize());
       return chart;
