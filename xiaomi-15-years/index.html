@@ -1,0 +1,1309 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>十五年，踏浪而出：小米的制造长征</title>
+  <meta name="description" content="小米十五年数据新闻专题：从互联网手机到芯片、汽车与自建工厂的制造长征。">
+  <script src="./assets/echarts.min.js"></script>
+  <style>
+    :root {
+      --ink: #101114;
+      --muted: #626772;
+      --paper: #fffaf3;
+      --white: #ffffff;
+      --line: #e9ded1;
+      --red: #e83425;
+      --orange: #ff6700;
+      --amber: #cc7a00;
+      --blue: #3156d4;
+      --green: #159a6a;
+      --purple: #7b3fc6;
+      --dark: #090b0f;
+      --shadow: 0 22px 70px rgba(31, 23, 15, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        linear-gradient(180deg, #fff7ed 0%, #fffdf9 22%, #f7f3ec 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .cover {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .cover::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 45vh;
+      min-height: 320px;
+      background:
+        linear-gradient(90deg, rgba(8, 9, 12, 0.35), rgba(8, 9, 12, 0.05)),
+        linear-gradient(160deg, #15212b 0%, #263843 48%, #fff3d8 49%, #18202a 100%);
+      z-index: 1;
+    }
+
+    .motion-scene {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 45vh;
+      min-height: 320px;
+      opacity: 0.82;
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .rail {
+      position: absolute;
+      left: -14%;
+      width: 128%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent);
+      transform: rotate(-7deg);
+      animation: railMove 8s linear infinite;
+    }
+
+    .rail.r1 { top: 62%; }
+    .rail.r2 { top: 67%; animation-delay: -2s; opacity: 0.55; }
+    .rail.r3 { top: 72%; animation-delay: -4s; opacity: 0.4; }
+
+    .factory-grid {
+      position: absolute;
+      right: 6vw;
+      bottom: 4vh;
+      width: min(45vw, 650px);
+      height: min(32vw, 420px);
+      background:
+        linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 38px 38px;
+      clip-path: polygon(16% 0, 100% 10%, 82% 100%, 0 78%);
+      transform: perspective(800px) rotateX(57deg) rotateZ(-8deg);
+    }
+
+    .light-trace {
+      position: absolute;
+      left: -30%;
+      top: 50%;
+      width: 34vw;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, #ff6700, #ffffff);
+      box-shadow: 0 0 28px rgba(255, 103, 0, 0.9);
+      transform: rotate(-7deg);
+      animation: trace 4.6s ease-in-out infinite;
+    }
+
+    @keyframes railMove {
+      from { background-position: 0 0; }
+      to { background-position: 420px 0; }
+    }
+
+    @keyframes trace {
+      0% { transform: translateX(0) rotate(-7deg); opacity: 0; }
+      18% { opacity: 1; }
+      72% { opacity: 1; }
+      100% { transform: translateX(160vw) rotate(-7deg); opacity: 0; }
+    }
+
+    .cover-inner {
+      position: relative;
+      z-index: 3;
+      width: min(1180px, calc(100% - 44px));
+      margin: 0 auto;
+      padding: calc(45vh + 58px) 0 90px;
+      text-align: center;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+      color: #9a4b25;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 54px;
+      height: 2px;
+      background: var(--orange);
+    }
+
+    h1 {
+      margin: 26px auto 18px;
+      max-width: 900px;
+      color: #ff3131;
+      font-size: clamp(46px, 8.1vw, 112px);
+      line-height: 0.96;
+      font-weight: 900;
+      text-wrap: balance;
+      text-shadow: 0 8px 0 rgba(255, 103, 0, 0.12);
+    }
+
+    .subtitle {
+      max-width: 880px;
+      margin: 0 auto;
+      font-size: clamp(21px, 2.3vw, 36px);
+      line-height: 1.42;
+      color: #17181d;
+      font-weight: 700;
+    }
+
+    .lead {
+      margin: 38px auto 0;
+      max-width: 980px;
+      font-size: 18px;
+      line-height: 2.1;
+      color: #20242b;
+      text-align: justify;
+      text-align-last: center;
+    }
+
+    .lead strong {
+      color: var(--orange);
+      font-size: 1.08em;
+      font-weight: 900;
+    }
+
+    .cover-stats {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 38px;
+    }
+
+    .stat-pill {
+      min-width: 142px;
+      padding: 14px 18px;
+      border: 1px solid #e7d6c6;
+      background: #fff9f1;
+      box-shadow: 0 12px 34px rgba(31, 23, 15, 0.08);
+    }
+
+    .stat-pill strong {
+      display: block;
+      color: #15171c;
+      font-size: 24px;
+      line-height: 1.1;
+    }
+
+    .stat-pill span {
+      display: block;
+      margin-top: 6px;
+      color: #73665b;
+      font-size: 13px;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      bottom: 26px;
+      transform: translateX(-50%);
+      color: #8e8074;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+    }
+
+    .page {
+      position: relative;
+      width: min(1210px, calc(100% - 44px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 92px 0;
+    }
+
+    .section-narrow {
+      width: min(980px, 100%);
+      margin: 0 auto;
+    }
+
+    .contents {
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, #fffdf8, #fff7ec 68%, #ffffff 100%);
+    }
+
+    .eyebrow {
+      color: var(--orange);
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      margin: 12px 0 22px;
+      font-size: clamp(34px, 5vw, 72px);
+      line-height: 1.08;
+      font-weight: 900;
+      color: var(--ink);
+      text-wrap: balance;
+    }
+
+    .section-deck {
+      max-width: 960px;
+      color: #42454d;
+      font-size: 20px;
+      line-height: 1.92;
+      text-align: justify;
+    }
+
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-top: 56px;
+      align-items: start;
+    }
+
+    .chapter-hint {
+      margin: 54px 0 -18px;
+      text-align: center;
+      color: #c7c0b8;
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-shadow: 1px 1px 0 #ece7df, 2px 2px 0 #f5f1eb;
+    }
+
+    .toc-card {
+      min-height: 430px;
+      padding: 28px 24px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+      transition: transform 220ms ease, box-shadow 220ms ease;
+      isolation: isolate;
+    }
+
+    .toc-card:nth-child(2),
+    .toc-card:nth-child(4) {
+      margin-top: 78px;
+    }
+
+    .toc-card:hover {
+      transform: translateY(-10px) scale(1.018);
+      box-shadow: 0 30px 90px rgba(31, 23, 15, 0.24);
+    }
+
+    .toc-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.16), rgba(0,0,0,0.54)),
+        var(--card-bg);
+    }
+
+    .toc-card::after {
+      content: "";
+      position: absolute;
+      left: -20%;
+      right: -20%;
+      bottom: 68px;
+      height: 2px;
+      background: rgba(255,255,255,0.8);
+      transform: rotate(var(--rail-angle));
+      box-shadow: 0 16px 0 rgba(255,255,255,0.34), 0 -16px 0 rgba(255,255,255,0.22);
+    }
+
+    .card-1 {
+      --rail-angle: -13deg;
+      --card-bg:
+        linear-gradient(165deg, #2e755f 0%, #f4c785 46%, #d6503b 48%, #356b6d 100%);
+    }
+
+    .card-2 {
+      --rail-angle: 10deg;
+      --card-bg:
+        linear-gradient(165deg, #1d2b35 0%, #4d5a62 46%, #e74a32 49%, #d9c2a4 100%);
+    }
+
+    .card-3 {
+      --rail-angle: -8deg;
+      --card-bg:
+        linear-gradient(165deg, #442b58 0%, #db9578 45%, #ee5a3e 48%, #f3d6b7 100%);
+    }
+
+    .card-4 {
+      --rail-angle: 12deg;
+      --card-bg:
+        linear-gradient(165deg, #142338 0%, #295f7f 40%, #ff7a1a 44%, #ece0ce 100%);
+    }
+
+    .toc-number {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.78);
+      letter-spacing: 0.12em;
+      margin-bottom: 16px;
+    }
+
+    .toc-card h3 {
+      margin: 0;
+      font-size: 29px;
+      line-height: 1.18;
+      font-weight: 900;
+    }
+
+    .toc-card p {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      margin: 0;
+      color: rgba(255,255,255,0.86);
+      font-size: 15px;
+      line-height: 1.68;
+    }
+
+    .chapter {
+      padding: 0;
+      background: #fffdf9;
+      border-top: 1px solid var(--line);
+    }
+
+    .chapter.band {
+      background: #fff7ec;
+    }
+
+    .chapter-head {
+      min-height: 470px;
+      padding: 62px 0 50px;
+      display: grid;
+      align-items: center;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.92), rgba(255,255,255,0.60)),
+        linear-gradient(135deg, var(--chapter-a), var(--chapter-b));
+    }
+
+    .chapter-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 54px;
+    }
+
+    .mini-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border: 1px solid rgba(16,17,20,0.14);
+      color: #393b42;
+      background: rgba(255,255,255,0.76);
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 800;
+      transition: background 180ms ease, transform 180ms ease;
+    }
+
+    .mini-link:hover {
+      background: #fff;
+      transform: translateY(-2px);
+    }
+
+    .chapter-label {
+      color: var(--chapter-accent);
+      font-weight: 900;
+      letter-spacing: 0.13em;
+    }
+
+    .chapter-title {
+      margin: 14px 0 22px;
+      max-width: 930px;
+      font-size: clamp(40px, 6.5vw, 96px);
+      line-height: 1.02;
+      font-weight: 900;
+    }
+
+    .chapter-summary {
+      max-width: 870px;
+      font-size: 20px;
+      line-height: 1.9;
+      color: #3f4249;
+      text-align: justify;
+    }
+
+    .content-flow {
+      padding: 72px 0 96px;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 440px);
+      gap: 44px;
+      align-items: start;
+      margin: 56px 0;
+    }
+
+    .story-grid.reverse {
+      grid-template-columns: minmax(320px, 440px) minmax(0, 1fr);
+    }
+
+    .story-grid.reverse .text-block {
+      order: 2;
+    }
+
+    .text-block p,
+    .full-text p {
+      margin: 0 0 22px;
+      font-size: 18px;
+      line-height: 2;
+      text-align: justify;
+      color: #2c2e34;
+    }
+
+    .text-block strong,
+    .full-text strong,
+    .highlight {
+      color: var(--orange);
+      font-weight: 900;
+    }
+
+    .pullquote {
+      margin: 36px 0;
+      padding: 28px 30px;
+      border-left: 7px solid var(--chapter-accent);
+      background: rgba(255,255,255,0.82);
+      box-shadow: 0 16px 50px rgba(31,23,15,0.08);
+      font-size: 24px;
+      line-height: 1.65;
+      font-weight: 900;
+      color: #22242a;
+    }
+
+    .viz-panel {
+      padding: 24px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .chart-title {
+      margin: 0 0 4px;
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 900;
+      color: #202229;
+    }
+
+    .chart-note {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .chart-copy {
+      margin: 18px 0 0;
+      padding-top: 16px;
+      border-top: 1px solid #f0e5da;
+      color: #30333a;
+      font-size: 16px;
+      line-height: 1.9;
+      text-align: justify;
+    }
+
+    .chart-copy strong {
+      color: var(--orange);
+      font-weight: 900;
+    }
+
+    .chart {
+      width: 100%;
+      height: 420px;
+    }
+
+    .chart.short {
+      height: 360px;
+    }
+
+    .chart.tall {
+      height: 500px;
+    }
+
+    .visual {
+      min-height: 360px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.86), rgba(255,247,236,0.94)),
+        linear-gradient(145deg, #fff9ef, #ffe5cf);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+    }
+
+    .visual svg {
+      width: 92%;
+      height: auto;
+      display: block;
+    }
+
+    .visual-caption {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 18px;
+      padding-top: 16px;
+      color: #51463d;
+      font-size: 14px;
+      line-height: 1.6;
+      border-top: 1px solid #eadfd5;
+    }
+
+    .data-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin: 44px 0;
+    }
+
+    .data-cell {
+      padding: 22px 18px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 12px 40px rgba(31,23,15,0.08);
+    }
+
+    .data-cell strong {
+      display: block;
+      color: var(--chapter-accent);
+      font-size: 30px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .data-cell span {
+      display: block;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+
+    .next-row {
+      margin-top: 60px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .next-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 52px;
+      padding: 0 22px;
+      color: #fff;
+      background: var(--ink);
+      border-radius: 999px;
+      font-weight: 900;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .next-link:hover {
+      background: var(--orange);
+      transform: translateX(5px);
+    }
+
+    .sources {
+      padding: 92px 0 110px;
+      color: #f5efe8;
+      background:
+        linear-gradient(180deg, rgba(8, 9, 12, 0.92), rgba(8, 9, 12, 0.98)),
+        linear-gradient(135deg, #222832, #111318);
+    }
+
+    .sources .section-title,
+    .sources .eyebrow {
+      color: #fff;
+    }
+
+    .source-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 34px;
+      margin-top: 44px;
+    }
+
+    .source-box {
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.06);
+      border-radius: 8px;
+    }
+
+    .source-box h3 {
+      margin: 0 0 14px;
+      color: #fff;
+      font-size: 22px;
+    }
+
+    .source-box p,
+    .source-box li {
+      color: #d7cec4;
+      line-height: 1.9;
+      font-size: 15px;
+    }
+
+    .source-box ul {
+      margin: 0;
+      padding-left: 1.2em;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .toc-grid,
+      .story-grid,
+      .story-grid.reverse,
+      .source-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .story-grid.reverse .text-block {
+        order: initial;
+      }
+
+      .toc-card:nth-child(2),
+      .toc-card:nth-child(4) {
+        margin-top: 0;
+      }
+
+      .toc-card {
+        min-height: 330px;
+      }
+
+      .data-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .chart {
+        height: 360px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .cover-inner,
+      .page {
+        width: min(100% - 28px, 1210px);
+      }
+
+      .section,
+      .sources {
+        padding: 66px 0;
+      }
+
+      .chapter-head {
+        min-height: 0;
+        padding: 44px 0;
+      }
+
+      .chapter-nav {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 36px;
+      }
+
+      .cover-stats,
+      .data-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .data-strip {
+        display: grid;
+      }
+
+      .stat-pill {
+        width: 100%;
+      }
+
+      .section-deck,
+      .chapter-summary,
+      .text-block p,
+      .full-text p {
+        font-size: 16px;
+        line-height: 1.9;
+      }
+
+      .pullquote {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="cover" class="cover">
+    <div class="motion-scene" aria-hidden="true">
+      <div class="factory-grid"></div>
+      <div class="rail r1"></div>
+      <div class="rail r2"></div>
+      <div class="rail r3"></div>
+      <div class="light-trace"></div>
+    </div>
+    <div class="cover-inner">
+      <div class="kicker">2010-2026 Data Feature</div>
+      <h1>十五年，踏浪而出</h1>
+      <div class="subtitle">小米的制造长征：从互联网手机到芯片、汽车与自建工厂</div>
+      <p class="lead">“小米不是做互联网的吗，什么时候开始造车了？”这个问题放在 2015 年不奇怪，放在 2026 年，只能说明一件事：过去十五年，小米跑得太快了。它从 <strong>MIUI</strong> 和 <strong>1999 元手机</strong> 出发，经历 <strong>2016 年出货量暴跌 36%</strong> 的低谷，又把筹码押向 <strong>100 亿美元造车</strong>、<strong>3nm 自研芯片</strong> 和 <strong>三座自建工厂</strong>。</p>
+      <p class="lead">这一次，我们不只看小米发布会里的高光时刻，而是把营收、估值、出货量、渠道、研发投入和汽车业务放回同一条时间线里，看看这家曾被称为“互联网公司”的企业，如何一步步补齐制造能力。</p>
+      <div class="cover-stats">
+        <div class="stat-pill"><strong>4573亿</strong><span>2025 年全年收入</span></div>
+        <div class="stat-pill"><strong>41万+</strong><span>2025 年汽车交付</span></div>
+        <div class="stat-pill"><strong>1055亿</strong><span>五年累计研发投入</span></div>
+        <div class="stat-pill"><strong>3座</strong><span>自建制造工厂</span></div>
+      </div>
+    </div>
+    <a class="scroll-cue" href="#contents">向下阅读</a>
+  </header>
+
+  <main>
+    <section id="contents" class="contents section">
+      <div class="page">
+        <div class="section-narrow reveal">
+          <div class="eyebrow">Contents</div>
+          <h2 class="section-title">从一碗小米粥，到一条制造链</h2>
+          <p class="section-deck">这不是一条直线增长的爽文。它更像一条带着裂缝的折线：互联网模式把手机价格打穿，供应链危机又把高速奔跑的公司拽回地面；造车、芯片、工厂像三个沉重的锚，让“小米制造”从口号变成能力。</p>
+          <div class="chapter-hint">点击下方图片以浏览篇章</div>
+        </div>
+        <div class="toc-grid">
+          <a class="toc-card card-1 reveal" href="#chapter-1">
+            <span class="toc-number">01 / 2010-2015</span>
+            <h3>创业年代：互联网速度</h3>
+            <p>MIUI、1999 元、五分钟售罄。小米用互联网打法改写硬件定价逻辑。</p>
+          </a>
+          <a class="toc-card card-2 reveal" href="#chapter-2">
+            <span class="toc-number">02 / 2015-2017</span>
+            <h3>至暗时刻：供应链崩盘</h3>
+            <p>断供、缺货、出货量暴跌。高速增长的地基第一次裂开。</p>
+          </a>
+          <a class="toc-card card-3 reveal" href="#chapter-3">
+            <span class="toc-number">03 / 2017-2023</span>
+            <h3>绝地反击：从补课到豪赌</h3>
+            <p>活下来之后，小米把筹码押向智能电动车、芯片与全生态系统。</p>
+          </a>
+          <a class="toc-card card-4 reveal" href="#chapter-4">
+            <span class="toc-number">04 / 2024-2026</span>
+            <h3>跨界重生：铁三角成型</h3>
+            <p>SU7、玄戒 O1、三座工厂。手机、汽车、IoT 开始形成新的结构。</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="chapter-1" class="chapter" style="--chapter-a:#fff1df;--chapter-b:#ffd0a1;--chapter-accent:#ff6700;">
+      <div class="chapter-head">
+        <div class="page reveal">
+          <nav class="chapter-nav">
+            <a class="mini-link" href="#contents">&lt; 返回目录</a>
+            <a class="mini-link" href="#sources">数据来源</a>
+          </nav>
+          <div class="chapter-label">第一章 / 创业年代</div>
+          <h2 class="chapter-title">互联网速度，先把价格打穿</h2>
+          <p class="chapter-summary">2010 年，北京中关村保福寺桥银谷大厦 807 室。十来个人喝了碗小米粥，一家叫“小米”的公司就这么成立了。它最初想做的是移动互联网，但很快用互联网模式改写了手机硬件的价格逻辑。</p>
+        </div>
+      </div>
+      <div class="page content-flow">
+        <div class="story-grid">
+          <div class="text-block reveal">
+            <p>此时的中国手机市场，苹果 iPhone 4 售价 5999 元，三星 Galaxy S 系列定价 4000 元以上，“中华酷联”低端机依赖运营商渠道。一家没有硬件基因的公司，凭什么造手机？</p>
+            <p>雷军的答案是：<strong>用互联网模式改写硬件定价逻辑</strong>。小米做的第一件事不是造手机，而是做系统。2010 年 8 月，MIUI 第一个内测版发布，100 个初始用户每周参与系统迭代。</p>
+            <p>2011 年 8 月，小米手机 1 发布，定价 1999 元。同期同等配置的 HTC、三星旗舰普遍接近 5000 元，小米直接把行业溢价打掉一大截。</p>
+            <div class="pullquote">手机不赚大头，靠 MIUI 生态、应用商店、广告等互联网服务获取持续收入。</div>
+          </div>
+          <div class="visual reveal" aria-label="互联网手机抽象插画">
+            <svg viewBox="0 0 520 390" role="img">
+              <defs>
+                <linearGradient id="phoneGlow" x1="0" x2="1">
+                  <stop offset="0" stop-color="#ff6700"/>
+                  <stop offset="1" stop-color="#ffd2a3"/>
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="520" height="390" fill="#fff6ea"/>
+              <path d="M48 294 C138 238 210 250 292 198 S416 128 492 90" fill="none" stroke="#ff6700" stroke-width="8" stroke-linecap="round"/>
+              <rect x="170" y="55" width="180" height="280" rx="28" fill="#0c1018" stroke="url(#phoneGlow)" stroke-width="6"/>
+              <rect x="192" y="92" width="136" height="194" rx="12" fill="#fff1df"/>
+              <circle cx="260" cy="310" r="10" fill="#ff6700"/>
+              <text x="260" y="174" fill="#111318" font-size="48" font-weight="900" text-anchor="middle">1999</text>
+              <text x="260" y="218" fill="#ff6700" font-size="22" font-weight="900" text-anchor="middle">MIUI + Phone</text>
+              <circle cx="82" cy="300" r="14" fill="#ffb07a"/>
+              <circle cx="442" cy="96" r="16" fill="#ffb07a"/>
+            </svg>
+            <div class="visual-caption">互联网打法：用户参与、线上销售、硬件微利，支撑早期爆发式增长。</div>
+          </div>
+        </div>
+
+        <div class="viz-panel reveal">
+          <h3 class="chart-title">小米 2011-2015 年手机出货量与营收</h3>
+          <p class="chart-note">数据来源：小米十周年演讲与公开资料整理</p>
+          <div id="chart-revenue" class="chart"></div>
+          <p class="chart-copy">这条曲线解释了小米早期为什么会被称为“互联网速度”：出货量从 <strong>27 万台</strong> 跳到 <strong>6655 万台</strong>，营收也从约 <strong>5.5 亿元</strong> 增长到 <strong>668 亿元</strong>。增长背后不是单纯卖硬件，而是线上销售、粉丝参与和生态服务共同推高规模。</p>
+        </div>
+
+        <div class="data-strip reveal">
+          <div class="data-cell"><strong>5分钟</strong><span>小米手机 1 首次网络开售，30 万台售罄</span></div>
+          <div class="data-cell"><strong>6112万</strong><span>2014 年出货规模，首次登顶中国市场</span></div>
+          <div class="data-cell"><strong>318倍</strong><span>2010-2014 年营收增长约数</span></div>
+          <div class="data-cell"><strong>450亿</strong><span>2014 年融资后估值进入高位</span></div>
+        </div>
+
+        <div class="viz-panel reveal">
+          <h3 class="chart-title">2010-2014 年估值阶梯</h3>
+          <p class="chart-note">单位：亿美元。资本迅速认可“互联网公司做硬件”的新叙事。</p>
+          <div id="chart-valuation" class="chart short"></div>
+          <p class="chart-copy">资本给出的答案非常直接：从 A 轮的 <strong>2.5 亿美元</strong> 到 2014 年的 <strong>450 亿美元</strong>，估值阶梯不断抬高。但估值认可的是增长故事，供应链和制造能力的短板仍然埋在下面。</p>
+        </div>
+
+        <div class="next-row">
+          <a class="next-link" href="#chapter-2">下一篇章：供应链崩盘 &gt;</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="chapter-2" class="chapter band" style="--chapter-a:#eef2f7;--chapter-b:#d7dedf;--chapter-accent:#d63b30;">
+      <div class="chapter-head">
+        <div class="page reveal">
+          <nav class="chapter-nav">
+            <a class="mini-link" href="#contents">&lt; 返回目录</a>
+            <a class="mini-link" href="#chapter-1">上一章</a>
+          </nav>
+          <div class="chapter-label">第二章 / 至暗时刻</div>
+          <h2 class="chapter-title">当线上红利吃尽，供应链开始反噬</h2>
+          <p class="chapter-summary">2016 年初的供应链危机，是小米成立以来第一次真正意义上的生死考验。断供、延期、缺货、渠道失速，让这家跑得太快的公司第一次发现自己腿断了。</p>
+        </div>
+      </div>
+      <div class="page content-flow">
+        <div class="story-grid reverse">
+          <div class="text-block reveal">
+            <p>事件的直接导火索是供应链团队与三星半导体高层的冲突。当时三星占据中小尺寸 AMOLED 屏幕市场 95% 以上份额，断供意味着小米 5 被迫推迟发布，春节销售旺季就这么错过了。</p>
+            <p>问题的根源更深。小米的供应链管理已经积累太多隐患：当一家创业五年的公司开始用甲方姿态对待合作伙伴，市场会用最残酷的方式教会它什么叫平等。</p>
+            <p>2015 年全年出货 6490 万台，中国第一；2016 年全年 4150 万台，<strong>暴跌 36%</strong>，排名跌至第五。每一次季报发布都是一次打击。</p>
+          </div>
+          <div class="visual reveal" aria-label="供应链断裂抽象插画">
+            <svg viewBox="0 0 520 390" role="img">
+              <rect width="520" height="390" fill="#f7f2ec"/>
+              <path d="M50 210 H160 M210 210 H310 M360 210 H470" stroke="#fff" stroke-width="9" stroke-linecap="round"/>
+              <path d="M166 180 l38 60 M316 180 l38 60" stroke="#e74c3c" stroke-width="12" stroke-linecap="round"/>
+              <rect x="68" y="84" width="116" height="74" rx="8" fill="#d9e2e8"/>
+              <rect x="202" y="84" width="116" height="74" rx="8" fill="#ff6700"/>
+              <rect x="336" y="84" width="116" height="74" rx="8" fill="#d9e2e8"/>
+              <text x="260" y="302" fill="#d63b30" font-size="42" font-weight="900" text-anchor="middle">-36%</text>
+              <text x="260" y="336" fill="#5a6069" font-size="18" text-anchor="middle">2016 annual shipments</text>
+            </svg>
+            <div class="visual-caption">供应链、渠道、目标管理同时承压，小米进入成立后的第一个低谷。</div>
+          </div>
+        </div>
+
+        <div class="viz-panel reveal">
+          <h3 class="chart-title">2015-2017 年出货量瀑布图</h3>
+          <p class="chart-note">单位：万台。2016 年下滑后，2017 年重新回到增长轨道。</p>
+          <div id="chart-waterfall" class="chart short"></div>
+          <p class="chart-copy">2016 年的下坠不是普通波动，而是一次结构性提醒：手机公司只会做流量和定价还不够，产能、供应商关系、库存节奏和线下触达都必须补课。</p>
+        </div>
+
+        <div class="story-grid">
+          <div class="full-text reveal">
+            <p>更致命的是渠道结构。2016 年，OPPO 和 vivo 线下门店总数超过 40 万家，华为推出“千县计划”覆盖超 600 个县，而小米线下门店仅约 50 家。</p>
+            <p>当线上流量增速从 43.6% 骤降至 5.6%，小米发现自己够不着数亿线下用户。这是一个典型的“线上红利吃尽、线下能力为零”的故事。</p>
+            <p>绝境中雷军亲自接管供应链，修复三星关系，并大规模铺设小米之家。2017 年 Q2，小米单季出货 2316 万台，创历史纪录。</p>
+          </div>
+          <div class="viz-panel reveal">
+            <h3 class="chart-title">2015 vs 2016 年渠道增速对比</h3>
+            <p class="chart-note">线上失速，线下补课成为逆转关键。</p>
+            <div id="chart-channel" class="chart short"></div>
+            <p class="chart-copy">线上增速从 <strong>43.6%</strong> 降到 <strong>5.6%</strong>，线下却从负增长转为 <strong>17.4%</strong>。这组数据说明，小米的问题不只是缺货，也是不再能只靠线上红利覆盖足够多的用户。</p>
+          </div>
+        </div>
+
+        <div class="next-row">
+          <a class="next-link" href="#chapter-3">下一篇章：从补课到豪赌 &gt;</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="chapter-3" class="chapter" style="--chapter-a:#f3eefe;--chapter-b:#ffd8c5;--chapter-accent:#7b3fc6;">
+      <div class="chapter-head">
+        <div class="page reveal">
+          <nav class="chapter-nav">
+            <a class="mini-link" href="#contents">&lt; 返回目录</a>
+            <a class="mini-link" href="#chapter-2">上一章</a>
+          </nav>
+          <div class="chapter-label">第三章 / 绝地反击</div>
+          <h2 class="chapter-title">活下来之后，小米开始押注更重的未来</h2>
+          <p class="chapter-summary">2021 年 1 月，小米被美国国防部列入名单。董事会上有人问：如果手机不能造了，三四万员工怎么办？雷军选择了最难的那条路：用现金储备押注智能电动车。</p>
+        </div>
+      </div>
+      <div class="page content-flow">
+        <div class="story-grid">
+          <div class="text-block reveal">
+            <p>2021 年 3 月 30 日，小米公告：未来 10 年全资投入 100 亿美元，首期 100 亿元，不对外融资。</p>
+            <p>为什么是造车？为什么是现在？答案指向同一件事：手机业务的天花板已经肉眼可见。如果不想只做一家卖手机的公司，就得找到第二个足够大的市场。</p>
+            <p>雷军形容同时启动造车和芯片自研是“同时供家里两个孩子上大学”——投入大、周期长、风险高。</p>
+            <div class="pullquote">先把方向想透，再在混乱中执行。造车不是副业，而是小米制造能力的终极考试。</div>
+          </div>
+          <div class="viz-panel reveal">
+            <h3 class="chart-title">2021-2025 年关键事件时间轴</h3>
+            <p class="chart-note">从外部冲击，到汽车、系统、芯片和工厂同步推进。</p>
+            <div id="chart-timeline" class="chart tall"></div>
+            <p class="chart-copy">时间线上的每个节点都不孤立：造车解决第二增长曲线，澎湃 OS 连接全生态，SU7 验证跨界能力，玄戒 O1 则把小米重新拉回更底层的技术叙事。</p>
+          </div>
+        </div>
+
+        <div class="story-grid reverse">
+          <div class="text-block reveal">
+            <p>芯片研发始于 2014 年的松果电子，2017 年发布澎湃 S1 后暂停。2021 年重启后，小米陆续推出专用芯片，每一步都在降低对外部供应商的依赖。</p>
+            <p>2023 年 10 月，澎湃 OS 发布，覆盖手机、汽车、IoT 全品类。全球可连接设备超 8.6 亿，这是小米第一次在操作系统层面拥有自主话语权。</p>
+            <p>2024 年 7 月，北京昌平手机智能工厂启用，投资 24 亿元，年产 1000 万台旗舰手机，关键工艺 100% 自动化。</p>
+          </div>
+          <div class="visual reveal" aria-label="芯片与汽车抽象插画">
+            <svg viewBox="0 0 520 390" role="img">
+              <rect width="520" height="390" fill="#f6f0ff"/>
+              <rect x="154" y="70" width="212" height="174" rx="14" fill="#252b39" stroke="#ff6700" stroke-width="5"/>
+              <path d="M190 112h140v90H190z" fill="#f3eefe"/>
+              <path d="M98 286 C140 238 186 245 230 286 H390 C415 286 438 306 446 330 H88 C90 312 92 298 98 286Z" fill="#ff6700"/>
+              <circle cx="168" cy="330" r="25" fill="#111318" stroke="#fff" stroke-width="6"/>
+              <circle cx="370" cy="330" r="25" fill="#111318" stroke="#fff" stroke-width="6"/>
+              <g stroke="#7b3fc6" stroke-width="5">
+                <path d="M154 110H92"/><path d="M154 150H92"/><path d="M154 190H92"/>
+                <path d="M366 110h62"/><path d="M366 150h62"/><path d="M366 190h62"/>
+              </g>
+              <text x="260" y="166" fill="#111318" font-size="34" font-weight="900" text-anchor="middle">O1</text>
+            </svg>
+            <div class="visual-caption">汽车与芯片同时推进，让小米从轻资产互联网打法进入重资产制造阶段。</div>
+          </div>
+        </div>
+
+        <div class="next-row">
+          <a class="next-link" href="#chapter-4">下一篇章：铁三角成型 &gt;</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="chapter-4" class="chapter band" style="--chapter-a:#e8f7ff;--chapter-b:#fff0d8;--chapter-accent:#3156d4;">
+      <div class="chapter-head">
+        <div class="page reveal">
+          <nav class="chapter-nav">
+            <a class="mini-link" href="#contents">&lt; 返回目录</a>
+            <a class="mini-link" href="#chapter-3">上一章</a>
+          </nav>
+          <div class="chapter-label">第四章 / 跨界重生</div>
+          <h2 class="chapter-title">手机、汽车、IoT，铁三角终于成型</h2>
+          <p class="chapter-summary">2024 年 3 月 28 日，SU7 发布，定价 21.59 万起。这个定价逻辑和 2011 年小米手机 1 如出一辙：同等配置卖得更便宜，用规模和服务赚钱。</p>
+        </div>
+      </div>
+      <div class="page content-flow">
+        <div class="story-grid">
+          <div class="text-block reveal">
+            <p>市场给出了几乎一样的回应。2024 年全年交付 13.5 万辆；2025 年 SUV 车型 YU7 上市，全年交付超 41 万辆，月均 3.4 万辆。</p>
+            <p>芯片战线同时收获。2025 年 5 月 22 日，自研 3nm SoC 芯片“玄戒 O1”发布，109 平方毫米集成 190 亿晶体管。芯片研发历时 10 年，投入超 130 亿元。</p>
+            <p>三座工厂落地：北京昌平手机工厂、北京亦庄汽车工厂、武汉家电工厂。从完全代工到三座自建工厂，制造能力的质变用了十年。</p>
+          </div>
+          <div class="viz-panel reveal">
+            <h3 class="chart-title">2019-2025 年研发投入</h3>
+            <p class="chart-note">单位：亿元。五年累计 1055 亿，完成“五年 1000 亿”目标。</p>
+            <div id="chart-rd" class="chart"></div>
+            <p class="chart-copy">研发投入从 <strong>75 亿元</strong> 增至 <strong>331 亿元</strong>，对应的是小米从“拼供应链效率”转向“补底层能力”。芯片、操作系统、汽车和工厂都需要更长周期的投入。</p>
+          </div>
+        </div>
+
+        <div class="data-strip reveal">
+          <div class="data-cell"><strong>13.5万</strong><span>2024 年 SU7 全年交付</span></div>
+          <div class="data-cell"><strong>41万+</strong><span>2025 年汽车全年交付</span></div>
+          <div class="data-cell"><strong>190亿</strong><span>玄戒 O1 集成晶体管数量</span></div>
+          <div class="data-cell"><strong>23.2%</strong><span>2025 年汽车业务收入占比</span></div>
+        </div>
+
+        <div class="story-grid reverse">
+          <div class="full-text reveal">
+            <p>2025 年全年财报收入 4573 亿，同比增长 25%；经调整净利润 392 亿，同比增长 43.8%。汽车业务收入 1061 亿元，同比增长 223.8%，从 2024 年亏损 62 亿转为盈利 9 亿。</p>
+            <p>结构性的变化在占比。2024 年汽车业务仅占营收 9%，2025 年跃升至 23.2%。手机、汽车、IoT 三足鼎立的“铁三角”正式成型。</p>
+            <p>2010 年，银谷大厦，十来个人喝了碗小米粥。2025 年，年收入 4573 亿，自研 3nm 芯片问世，汽车年交付超 41 万辆。</p>
+            <div class="pullquote">从手机到芯片，从芯片到汽车，从 100% 代工到三座自建工厂，小米用十五年证明：后来者有机会。</div>
+          </div>
+          <div class="viz-panel reveal">
+            <h3 class="chart-title">2024 vs 2025 核心财务指标</h3>
+            <p class="chart-note">单位：亿元。汽车业务成为结构变化的核心变量。</p>
+            <div id="chart-finance" class="chart"></div>
+            <p class="chart-copy">汽车业务收入从 <strong>328 亿元</strong> 到 <strong>1061 亿元</strong>，经营收益从 <strong>-62 亿元</strong> 转为 <strong>+9 亿元</strong>。这标志着它不再只是发布会上的新故事，而开始进入财务结构。</p>
+          </div>
+        </div>
+
+        <div class="next-row">
+          <a class="next-link" href="#sources">作品信息与数据来源 &gt;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="sources" class="sources">
+    <div class="page">
+      <div class="eyebrow">Sources</div>
+      <h2 class="section-title">数据来源与制作说明</h2>
+      <div class="source-grid">
+        <div class="source-box">
+          <h3>制作说明</h3>
+          <p>本页根据用户提供的《十五年 (1).docx》和 7 个 ECharts HTML 图表重构为单页数据新闻专题。页面不引用外部图片、字体或 CDN，ECharts 已本地化到当前子目录。</p>
+          <p>视觉方向参考“长卷式专题页”：沉浸首屏、章节目录卡、长篇图文、锚点跳转与数据图穿插。</p>
+        </div>
+        <div class="source-box">
+          <h3>主要来源</h3>
+          <ul>
+            <li>小米十周年演讲与公开资料整理</li>
+            <li>IDC 全球手机季度跟踪报告</li>
+            <li>赛诺市场研究</li>
+            <li>小米集团公告、发布会与年度业绩资料</li>
+            <li>用户提供的 2011-2025 出货量、估值、渠道、研发投入和财务指标图表</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const orange = '#ff6700';
+    const red = '#e74c3c';
+    const blue = '#3156d4';
+    const green = '#159a6a';
+    const purple = '#7b3fc6';
+    const axisText = '#4b5563';
+
+    function initChart(id, option) {
+      const el = document.getElementById(id);
+      if (!el || !window.echarts) return null;
+      const chart = echarts.init(el);
+      chart.setOption(option);
+      window.addEventListener('resize', () => chart.resize());
+      return chart;
+    }
+
+    const commonGrid = {
+      left: '7%',
+      right: '6%',
+      top: 56,
+      bottom: 58,
+      containLabel: true
+    };
+
+    initChart('chart-revenue', {
+      color: [orange, blue],
+      tooltip: { trigger: 'axis' },
+      legend: { data: ['出货量（万台）', '营收（亿元）'], bottom: 4 },
+      grid: commonGrid,
+      xAxis: { type: 'category', data: ['2011', '2012', '2013', '2014', '2015'], axisLabel: { color: axisText } },
+      yAxis: [
+        { type: 'value', name: '万台', axisLabel: { color: axisText } },
+        { type: 'value', name: '亿元', axisLabel: { color: axisText } }
+      ],
+      series: [
+        { name: '出货量（万台）', type: 'bar', data: [27, 719, 1869, 6107, 6655], barMaxWidth: 34, itemStyle: { borderRadius: [4, 4, 0, 0] } },
+        { name: '营收（亿元）', type: 'line', yAxisIndex: 1, data: [5.5, 108, 265, 636, 668], smooth: true, symbolSize: 9, lineStyle: { width: 4 } }
+      ]
+    });
+
+    initChart('chart-valuation', {
+      color: [orange],
+      tooltip: { trigger: 'axis', formatter: '{b}<br/>估值：{c} 亿美元' },
+      grid: commonGrid,
+      xAxis: { type: 'category', data: ['2010 A轮', '2011 B轮', '2012 C轮', '2013', '2014'], axisLabel: { color: axisText, interval: 0 } },
+      yAxis: { type: 'value', name: '亿美元', axisLabel: { color: axisText } },
+      series: [{
+        type: 'bar',
+        data: [2.5, 10, 40, 100, 450],
+        barMaxWidth: 42,
+        itemStyle: {
+          borderRadius: [5, 5, 0, 0],
+          color: params => ['#ffb380', '#ff9642', '#ff7a00', '#e66900', '#cc5200'][params.dataIndex]
+        },
+        label: { show: true, position: 'top', formatter: '{c}' }
+      }]
+    });
+
+    initChart('chart-waterfall', {
+      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+      legend: { data: ['基准', '变化'], bottom: 4 },
+      grid: commonGrid,
+      xAxis: { type: 'category', data: ['2015年\n6490', '2016年\n4150', '2017年\n9240'], axisLabel: { color: axisText } },
+      yAxis: { type: 'value', name: '万台', axisLabel: { color: axisText } },
+      series: [
+        {
+          name: '基准',
+          type: 'bar',
+          stack: 'total',
+          itemStyle: { color: 'transparent' },
+          emphasis: { itemStyle: { color: 'transparent' } },
+          data: [0, 4150, 4150]
+        },
+        {
+          name: '变化',
+          type: 'bar',
+          stack: 'total',
+          data: [
+            { value: 6490, itemStyle: { color: orange } },
+            { value: 2340, itemStyle: { color: red } },
+            { value: 5090, itemStyle: { color: green } }
+          ],
+          label: { show: true, position: 'top', formatter: params => ['6490', '-2340', '+5090'][params.dataIndex] }
+        }
+      ]
+    });
+
+    initChart('chart-channel', {
+      color: [orange, blue],
+      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, valueFormatter: value => value + '%' },
+      legend: { data: ['线上增速', '线下增速'], bottom: 4 },
+      grid: commonGrid,
+      xAxis: { type: 'category', data: ['2015年', '2016年'], axisLabel: { color: axisText } },
+      yAxis: { type: 'value', name: '%', axisLabel: { color: axisText } },
+      series: [
+        { name: '线上增速', type: 'bar', data: [43.6, 5.6], barMaxWidth: 38, itemStyle: { borderRadius: [4, 4, 0, 0] } },
+        { name: '线下增速', type: 'bar', data: [-3.5, 17.4], barMaxWidth: 38, itemStyle: { borderRadius: [4, 4, 0, 0] } }
+      ]
+    });
+
+    initChart('chart-timeline', {
+      color: [purple],
+      tooltip: {
+        formatter: params => `<strong>${params.name}</strong><br>${params.value[0]}`
+      },
+      grid: { left: 72, right: 42, top: 44, bottom: 68 },
+      xAxis: {
+        type: 'time',
+        min: '2020-10-01',
+        max: '2025-08-01',
+        axisLabel: { color: axisText }
+      },
+      yAxis: {
+        type: 'value',
+        min: -1,
+        max: 1,
+        axisLabel: { show: false },
+        splitLine: { show: false }
+      },
+      series: [
+        {
+          name: '关键事件',
+          type: 'scatter',
+          symbolSize: 18,
+          data: [
+            { value: ['2021-01-15', 0], name: '被列入制裁名单', label: { position: 'bottom' } },
+            { value: ['2021-03-30', 0], name: '宣布造车', label: { position: 'top' } },
+            { value: ['2023-10-26', 0], name: '澎湃OS发布', label: { position: 'bottom' } },
+            { value: ['2024-03-28', 0], name: 'SU7上市', label: { position: 'top' } },
+            { value: ['2025-05-22', 0], name: '玄戒O1发布', label: { position: 'bottom' } }
+          ],
+          label: {
+            show: true,
+            formatter: '{b}',
+            color: '#202229',
+            fontWeight: 700
+          }
+        },
+        {
+          type: 'line',
+          symbol: 'none',
+          data: [['2021-01-15', 0], ['2025-05-22', 0]],
+          lineStyle: { color: '#c6b4de', width: 4 }
+        }
+      ]
+    });
+
+    initChart('chart-rd', {
+      color: [orange],
+      tooltip: { trigger: 'item', formatter: '{b}<br/>研发投入：{c} 亿元' },
+      angleAxis: {
+        type: 'category',
+        data: ['2019', '2020', '2021', '2022', '2023', '2024', '2025'],
+        axisLabel: { color: axisText }
+      },
+      radiusAxis: {
+        axisLabel: { color: axisText }
+      },
+      polar: { radius: ['18%', '78%'] },
+      series: [{
+        type: 'bar',
+        coordinateSystem: 'polar',
+        data: [75, 100, 130, 160, 190, 241, 331],
+        itemStyle: { color: params => ['#ffd6b8', '#ffc397', '#ffaa66', '#ff9238', '#ff7c14', '#ff6700', '#d94e00'][params.dataIndex] },
+        label: { show: true, position: 'middle', formatter: '{c}' }
+      }]
+    });
+
+    initChart('chart-finance', {
+      color: [blue, orange],
+      tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, valueFormatter: value => value + ' 亿元' },
+      legend: { data: ['2024年', '2025年'], bottom: 4 },
+      grid: { left: '8%', right: '6%', top: 58, bottom: 66, containLabel: true },
+      xAxis: { type: 'category', data: ['总收入', '经调整净利润', '汽车业务收入', '汽车业务经营收益'], axisLabel: { color: axisText, interval: 0, rotate: 18 } },
+      yAxis: { type: 'value', name: '亿元', axisLabel: { color: axisText } },
+      series: [
+        { name: '2024年', type: 'bar', data: [3659, 272, 328, -62], barMaxWidth: 34, itemStyle: { borderRadius: [4, 4, 0, 0] } },
+        { name: '2025年', type: 'bar', data: [4573, 392, 1061, 9], barMaxWidth: 34, itemStyle: { borderRadius: [4, 4, 0, 0] } }
+      ]
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
